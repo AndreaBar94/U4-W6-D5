@@ -22,7 +22,7 @@ public class ControlCenter implements FireAlarmSystem{
     @Override
     public void alarm(Probe probe) {
    
-            int idSonda = probe.getId();
+            int idSonda = probe.getProbeId();
             double latitude = probe.getLatitude();
             double longitude = probe.getLongitude();
             int smokeLvl = probe.getSmokeLvl();

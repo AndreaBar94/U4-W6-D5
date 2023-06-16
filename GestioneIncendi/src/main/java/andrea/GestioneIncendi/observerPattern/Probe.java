@@ -13,15 +13,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Probe {
 	
-	private int id;
+	private int probeId;
 	private List<FireAlarmSystem> fireAlarms = new ArrayList<>();
 	private double latitude;
 	private double longitude;
 	private int smokeLvl;
 	
-	public Probe(int id, double latitude, double longitude, int smokeLvl) {
+	public Probe(int probeId, double latitude, double longitude, int smokeLvl) {
 		super();
-		this.id = id;
+		this.probeId = probeId;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.smokeLvl = smokeLvl;
@@ -38,6 +38,8 @@ public class Probe {
 	public void detectFire() {
 		if(this.smokeLvl > 5) {
 			notifyFireAlarmSystem();
+		}else {
+			System.out.println("Smoke levels under safety limits for the probe number: " + this.probeId);
 		}
 	}
 	

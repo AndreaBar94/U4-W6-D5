@@ -25,6 +25,8 @@ public class Probe3 implements ProbeSensor{
 	public void triggerFireAlarm() {
 		if(this.smokeLvl > 5) {
 			notifyAlarm();
+		}else {
+			System.out.println("Smoke levels under safety limits for the probe number: " + this.probeId);
 		}
 		
 	}

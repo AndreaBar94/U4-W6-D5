@@ -32,7 +32,9 @@ public class Probe2 implements FireDetector{
 		
         if (smokeLvl > 5) {
             notifyAlarm();
-        }
+        }else {
+			System.out.println("Smoke levels under safety limits for the probe number: " + this.probeId);
+		}
 		
 	}
 
