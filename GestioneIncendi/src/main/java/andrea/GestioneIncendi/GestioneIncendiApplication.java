@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import andrea.GestioneIncendi.exceptions.FalseAlarm;
 import andrea.GestioneIncendi.factoryPattern.ControlCenter3;
 import andrea.GestioneIncendi.factoryPattern.Probe3;
 import andrea.GestioneIncendi.factoryPattern.ProbeFactory;
@@ -21,7 +22,7 @@ import andrea.GestioneIncendi.proxyPattern.Probe2;
 @ComponentScan("andrea.GestioneIncendi")
 public class GestioneIncendiApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FalseAlarm {
 		SpringApplication.run(GestioneIncendiApplication.class, args);
 		
 		System.out.println("---------------------OBSERVER------------------------");
@@ -37,9 +38,22 @@ public class GestioneIncendiApplication {
 		probe1.addFireAlarm(controlCenter);
 		probe2.addFireAlarm(controlCenter);
 		
+		//creo una lista di sonde per permettere con un for l'iterazione su tutte
+		List<Probe> probes = new ArrayList<>();
+		probes.add(probe1);
+		probes.add(probe2);
+		
 		//il metodo lancia l'avviso all'observer tramite interfaccia
-		probe1.detectFire();//risposta positiva
-		probe2.detectFire();//non genera output, livello fumo basso
+		for(Probe probe : probes) {
+			try {
+				probe.detectFire();
+				
+			} catch (FalseAlarm e) {
+			
+			}
+		}
+		
+		
 		
 		System.out.println("----------------------PROXY--------------------------");
 		
@@ -54,11 +68,23 @@ public class GestioneIncendiApplication {
 		FireDetector probe5 = new Probe2(5, 23.4324, 65.5644, 5, controlCenter2);
 		FireDetector probe6 = new Probe2(6, 23.4324, 65.5644, 10, controlCenter2);
 		
+		List<FireDetector> probes2 = new ArrayList<>();
+		probes2.add(probe3);
+		probes2.add(probe4);
+		probes2.add(probe5);
+		probes2.add(probe6);
+		
 		//utilizzo il metodo definito nell'interfaccia della probe, anziché interagire direttamente con la classe concreta
-		probe3.triggerFireAlarm();
-		probe4.triggerFireAlarm();
-		probe5.triggerFireAlarm();
-		probe6.triggerFireAlarm();
+		for(FireDetector probe : probes2) {
+			try {
+				probe.triggerFireAlarm();
+	
+			} catch (Exception e) {
+				
+			}
+		}
+		
+		
 		
 		System.out.println("----------------------FACTORY------------------------");
 		
@@ -72,10 +98,22 @@ public class GestioneIncendiApplication {
 		Probe3 probe8 = factory.createProbe(8, 43.5342, 10.4325, 10, controlCenter3);
 		Probe3 probe9 = factory.createProbe(9, 43.5342, 10.4325, 20, controlCenter3);
 		
+		List<Probe3> probes3 = new ArrayList<>();
+		probes3.add(probe7);
+		probes3.add(probe8);
+		probes3.add(probe9);
+		
 		//lancio controllo fumo con il metodo dell'interfaccia
-		probe7.triggerFireAlarm();//risposta negativa, fumo di lvl 4
-		probe8.triggerFireAlarm();
-		probe9.triggerFireAlarm();
+		for(Probe3 probe : probes3) {
+			try {
+			probe.triggerFireAlarm();
+			
+			} catch (Exception e) {
+				
+			}
+		}
+		
+		
 	}
 
 }

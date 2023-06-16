@@ -1,5 +1,6 @@
 package andrea.GestioneIncendi.factoryPattern;
 
+import andrea.GestioneIncendi.exceptions.FalseAlarm;
 import lombok.Data;
 
 @Data
@@ -22,11 +23,11 @@ public class Probe3 implements ProbeSensor{
 	}
 
 	@Override
-	public void triggerFireAlarm() {
+	public void triggerFireAlarm() throws FalseAlarm {
 		if(this.smokeLvl > 5) {
 			notifyAlarm();
 		}else {
-			System.out.println("Smoke levels under safety limits for the probe number: " + this.probeId);
+			throw new FalseAlarm(this.probeId);
 		}
 		
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import andrea.GestioneIncendi.exceptions.FalseAlarm;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -35,11 +36,11 @@ public class Probe {
 		fireAlarms.remove(fas);
 	}
 	
-	public void detectFire() {
+	public void detectFire() throws FalseAlarm {
 		if(this.smokeLvl > 5) {
 			notifyFireAlarmSystem();
 		}else {
-			System.out.println("Smoke levels under safety limits for the probe number: " + this.probeId);
+			throw new FalseAlarm(this.probeId);
 		}
 	}
 	

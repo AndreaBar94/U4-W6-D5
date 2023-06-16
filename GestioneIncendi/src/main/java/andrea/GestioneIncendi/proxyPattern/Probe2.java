@@ -2,6 +2,7 @@ package andrea.GestioneIncendi.proxyPattern;
 
 import org.springframework.stereotype.Component;
 
+import andrea.GestioneIncendi.exceptions.FalseAlarm;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,12 +29,12 @@ public class Probe2 implements FireDetector{
 	}
 
 	@Override
-	public void triggerFireAlarm() {
+	public void triggerFireAlarm() throws FalseAlarm {
 		
         if (smokeLvl > 5) {
             notifyAlarm();
         }else {
-			System.out.println("Smoke levels under safety limits for the probe number: " + this.probeId);
+        	throw new FalseAlarm(this.probeId);
 		}
 		
 	}
