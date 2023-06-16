@@ -48,8 +48,8 @@ public class GestioneIncendiApplication {
 			try {
 				probe.detectFire();
 				
-			} catch (FalseAlarm e) {
-			
+			} catch (Exception e) {
+				System.out.println("Nothing to report here! " + e);
 			}
 		}
 		
@@ -80,7 +80,7 @@ public class GestioneIncendiApplication {
 				probe.triggerFireAlarm();
 	
 			} catch (Exception e) {
-				
+				System.out.println("Nothing to report here! " + e);
 			}
 		}
 		
@@ -106,10 +106,10 @@ public class GestioneIncendiApplication {
 		//lancio controllo fumo con il metodo dell'interfaccia
 		for(Probe3 probe : probes3) {
 			try {
-			probe.triggerFireAlarm();
+				probe.triggerFireAlarm();
 			
 			} catch (Exception e) {
-				
+				System.out.println("Nothing to report here! " + e);
 			}
 		}
 		
