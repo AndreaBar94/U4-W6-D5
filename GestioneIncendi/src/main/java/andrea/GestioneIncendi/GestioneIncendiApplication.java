@@ -25,7 +25,7 @@ public class GestioneIncendiApplication {
 	public static void main(String[] args) throws FalseAlarm {
 		SpringApplication.run(GestioneIncendiApplication.class, args);
 		
-		System.out.println("---------------------OBSERVER------------------------");
+		System.out.println("------------------------OBSERVER---------------------------");
 		
 		//istanzio sonde
 		Probe probe1 = new Probe(1, 23.4324, 65.5644, 7);
@@ -55,7 +55,7 @@ public class GestioneIncendiApplication {
 		
 		
 		
-		System.out.println("----------------------PROXY--------------------------");
+		System.out.println("-------------------------PROXY-----------------------------");
 		
 		//uso interfacce per interagire con gli oggetti
 		
@@ -86,7 +86,7 @@ public class GestioneIncendiApplication {
 		
 		
 		
-		System.out.println("----------------------FACTORY------------------------");
+		System.out.println("-------------------------FACTORY---------------------------");
 		
 		ControlCenter3 controlCenter3 = new ControlCenter3();
 		

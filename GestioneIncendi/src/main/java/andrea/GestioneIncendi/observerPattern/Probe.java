@@ -28,6 +28,7 @@ public class Probe {
 		this.smokeLvl = smokeLvl;
 	}
 	
+	//metodo per aggiungere osservatore alla sonda(centro di controllo)
 	public void addFireAlarm(FireAlarmSystem fas) {
 		fireAlarms.add(fas);
 	}
