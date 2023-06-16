@@ -41,12 +41,14 @@ public class GestioneIncendiApplication {
 		FireDetector probe4 = new Probe2(1, 23.4324, 65.5644, 3, controlCenter2);
 		FireDetector probe5 = new Probe2(1, 23.4324, 65.5644, 5, controlCenter2);
 		FireDetector probe6 = new Probe2(1, 23.4324, 65.5644, 10, controlCenter2);
-		probe3.triggerFireAlarm();
+		probe3.triggerFireAlarm();//utilizzo il metodo definito nell'interfaccia della probe, anziché interagire direttamente con la classe concreta
 		probe4.triggerFireAlarm();
 		probe5.triggerFireAlarm();
 		probe6.triggerFireAlarm();
 		
 		System.out.println("----------------------FACTORY------------------------");
+		
+		
 	}
 
 }
