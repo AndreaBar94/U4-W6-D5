@@ -7,6 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import andrea.GestioneIncendi.factoryPattern.ControlCenter3;
+import andrea.GestioneIncendi.factoryPattern.Probe3;
+import andrea.GestioneIncendi.factoryPattern.ProbeFactory;
 import andrea.GestioneIncendi.observerPattern.ControlCenter;
 import andrea.GestioneIncendi.observerPattern.Probe;
 import andrea.GestioneIncendi.proxyPattern.AlarmSystem;
@@ -37,10 +40,10 @@ public class GestioneIncendiApplication {
 		System.out.println("----------------------PROXY--------------------------");
 		
 		AlarmSystem controlCenter2 = new ControlCenter2();
-		FireDetector probe3 = new Probe2(1, 23.4324, 65.5644, 18, controlCenter2);
-		FireDetector probe4 = new Probe2(1, 23.4324, 65.5644, 3, controlCenter2);
-		FireDetector probe5 = new Probe2(1, 23.4324, 65.5644, 5, controlCenter2);
-		FireDetector probe6 = new Probe2(1, 23.4324, 65.5644, 10, controlCenter2);
+		FireDetector probe3 = new Probe2(3, 23.4324, 65.5644, 18, controlCenter2);
+		FireDetector probe4 = new Probe2(4, 23.4324, 65.5644, 3, controlCenter2);
+		FireDetector probe5 = new Probe2(5, 23.4324, 65.5644, 5, controlCenter2);
+		FireDetector probe6 = new Probe2(6, 23.4324, 65.5644, 10, controlCenter2);
 		probe3.triggerFireAlarm();//utilizzo il metodo definito nell'interfaccia della probe, anziché interagire direttamente con la classe concreta
 		probe4.triggerFireAlarm();
 		probe5.triggerFireAlarm();
@@ -48,6 +51,13 @@ public class GestioneIncendiApplication {
 		
 		System.out.println("----------------------FACTORY------------------------");
 		
+		ControlCenter3 controlCenter3 = new ControlCenter3();
+		//istanzio nuova fabbrica
+		ProbeFactory factory = new ProbeFactory();
+		//uso metodo della fabbrica per creare oggetto
+		Probe3 probe7 = factory.createProbe(7, 43.5342, 10.4325, 4, controlCenter3);
+		//lancio controllo fumo
+		probe7.triggerFireAlarm();//risposta negativa, fumo di lvl 4
 		
 	}
 
